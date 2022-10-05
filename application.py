@@ -48,10 +48,10 @@ print("\n\n\n", files)
 #     PATH = driver_dir
 
 import stat
-stt = os.stat("./chromedriver.exe")
-os.chmod("./chromedriver.exe", stt.st_mode | stat.S_IEXEC)
+stt = os.stat("./chromedriver")
+os.chmod("./chromedriver", stt.st_mode | stat.S_IEXEC)
 
-PATH = "./chromedriver.exe"
+PATH = "./chromedriver"
 options = wd.ChromeOptions()
 options.add_argument("--headless")
 options.add_argument("--no-sandbox")

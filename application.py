@@ -48,8 +48,8 @@ files = [f for f in os.listdir('.') if os.path.isfile(f)]
 #     PATH = driver_dir
 
 import stat
-st = os.stat("./chromedriver.exe")
-os.chmod("./chromedriver.exe", st.st_mode | stat.S_IEXEC)
+stt = os.stat("./chromedriver.exe")
+os.chmod("./chromedriver.exe", stt.st_mode | stat.S_IEXEC)
 
 PATH = "./chromedriver.exe"
 options = wd.ChromeOptions()

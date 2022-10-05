@@ -39,7 +39,7 @@ cwd = os.getcwd() # Current Path
 
 files = [f for f in os.listdir('.') if os.path.isfile(f)]
 
-# print("\n\n\n", files)
+print("\n\n\n", files)
 # driver_dir = cwd + "\chromedriver.exe"
 # try:
 #     PATH = Path(__file__).parent / 'chromedriver.exe' 

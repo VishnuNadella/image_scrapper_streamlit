@@ -94,9 +94,10 @@ if st.button("Get data"):
                     cnt += 1
             add_to_file([item, final])
             st.write(final)
+            driver.quit()
         except:
             errs.append(item)
-        driver.quit()
+        
     st.balloons()
     st.download_button("Download File", open("./Files/prod_img.csv", "r"), file_name = "Products_file.csv", mime = "text/csv")
     if len(errs) > 0:

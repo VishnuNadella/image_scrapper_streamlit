@@ -95,7 +95,8 @@ if st.button("Get data"):
             add_to_file([item, final])
             st.write(final)
             driver.quit()
-        except:
+        except Exception as e:
+            print(e)
             errs.append(item)
         
     st.balloons()

@@ -66,38 +66,39 @@ errs = []
 if st.button("Get data"):
     items = items.split("\n")
     for item in items:
+        
+        st.write(item)
+        driver = wd.Chrome(executable_path = PATH, options = options)
+        driver.get("https://images.google.com/")
+        search_bar = driver.find_element(By.NAME, "q")
+        search_bar.clear()
+        search_bar.send_keys(item)
         try:
-            st.write(item)
-            driver = wd.Chrome(executable_path = PATH, options = options)
-            driver.get("https://images.google.com/")
-            search_bar = driver.find_element(By.NAME, "q")
-            search_bar.clear()
-            search_bar.send_keys(item)
+            search_bar.send_keys(Keys.ENTER)
+        except:
+            pass
+        sleep(4)
+        cnt = 0
+        while True:
+            src_stri = "//div[@data-ri=" + str(cnt) + "]"
             try:
-                search_bar.send_keys(Keys.ENTER)
-            except:
-                pass
-            sleep(4)
-            cnt = 0
-            while True:
-                src_stri = "//div[@data-ri=" + str(cnt) + "]"
                 driver.find_element(By.XPATH, src_stri).click()
-                sleep(5)
-                try:
-                    req = driver.find_element(By.XPATH, "//img[@class='n3VNCb KAlRDb']")
-                except:
-                    req = driver.find_element(By.XPATH, "//*[@id='Sva75c']/div/div/div[3]/div[2]/c-wiz/div/div[1]/div[1]/div[3]/div/a/img")
-                final = req.get_attribute("src")
-                if "https://" in final:
-                    break
-                else:
-                    cnt += 1
-            add_to_file([item, final])
-            st.write(final)
-            driver.quit()
-        except Exception as e:
-            print(e)
-            errs.append(item)
+            except:
+                errs.append(item)
+            sleep(5)
+            try:
+                req = driver.find_element(By.XPATH, "//img[@class='n3VNCb KAlRDb']")
+            except:
+                req = driver.find_element(By.XPATH, "//*[@id='Sva75c']/div/div/div[3]/div[2]/c-wiz/div/div[1]/div[1]/div[3]/div/a/img")
+            final = req.get_attribute("src")
+            if "https://" in final:
+                break
+            else:
+                cnt += 1
+        add_to_file([item, final])
+        st.write(final)
+        driver.quit()
+        
         
     st.balloons()
     st.download_button("Download File", open("./Files/prod_img.csv", "r"), file_name = "Products_file.csv", mime = "text/csv")

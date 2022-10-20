@@ -77,7 +77,7 @@ if st.button("Get data"):
             search_bar.send_keys(Keys.ENTER)
         except:
             pass
-        sleep(4)
+        sleep(2)
         cnt = 0
         while True:
             src_stri = "//div[@data-ri=" + str(cnt) + "]"

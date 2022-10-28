@@ -72,7 +72,7 @@ if st.button("Get data"):
     for item in items:
         
         st.write(item)
-        driver = webdriver.Chrome(service=ChromiumService(ChromeDriverManager(chrome_type=ChromeType.CHROMIUM).install()))
+        driver = wd.Chrome(service=ChromiumService(ChromeDriverManager(chrome_type=ChromeType.CHROMIUM).install()))
         #driver = wd.Chrome(service=ChromeService(ChromeDriverManager().install()))
         driver.get("https://images.google.com/")
         search_bar = driver.find_element(By.NAME, "q")

@@ -9,6 +9,15 @@ import csv
 import os
 from pathlib import Path
 
+
+#from selenium.webdriver.chrome.service import Service as ChromiumService
+#from webdriver_manager.chrome import ChromeDriverManager
+from webdriver_manager.core.utils import ChromeType
+
+
+
+
+
 from selenium.common.exceptions import NoSuchElementException
 from selenium.common.exceptions import StaleElementReferenceException
 
@@ -63,7 +72,8 @@ if st.button("Get data"):
     for item in items:
         
         st.write(item)
-        driver = wd.Chrome(service=ChromeService(ChromeDriverManager().install()))
+        driver = webdriver.Chrome(service=ChromiumService(ChromeDriverManager(chrome_type=ChromeType.CHROMIUM).install()))
+        #driver = wd.Chrome(service=ChromeService(ChromeDriverManager().install()))
         driver.get("https://images.google.com/")
         search_bar = driver.find_element(By.NAME, "q")
         search_bar.clear()

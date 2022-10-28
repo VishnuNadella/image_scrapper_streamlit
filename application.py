@@ -1,5 +1,6 @@
 import streamlit as st
 from webdriver_manager.chrome import ChromeDriverManager
+from selenium.webdriver.chrome.service import Service as ChromeService
 from selenium import webdriver as wd
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys

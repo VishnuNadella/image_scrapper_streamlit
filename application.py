@@ -86,15 +86,23 @@ if st.button("Get data"):
             except:
                 errs.append(item)
             sleep(5)
+            final = None
             try:
                 req = driver.find_element(By.XPATH, "//img[@class='n3VNCb KAlRDb']")
+                final = req.get_attribute("src")
             except:
-                req = driver.find_element(By.XPATH, "//*[@id='Sva75c']/div/div/div[3]/div[2]/c-wiz/div/div[1]/div[1]/div[3]/div/a/img")
-            final = req.get_attribute("src")
+                try:
+                    req = driver.find_element(By.XPATH, "//*[@id='Sva75c']/div/div/div[3]/div[2]/c-wiz/div/div[1]/div[1]/div[3]/div/a/img")
+                    final = req.get_attribute("src")
+                except:
+                    errs.append(item)
+            
             if "https://" in final:
                 break
             else:
                 cnt += 1
+        if final == None:
+            final = "Couldnt able to fetch this item, sorry."
         add_to_file([item, final])
         st.write(final)
         driver.quit()

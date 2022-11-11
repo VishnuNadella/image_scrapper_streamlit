@@ -86,7 +86,7 @@ if st.button("Get data"):
             except:
                 errs.append(item)
             sleep(5)
-            final = None
+            final = ""
             try:
                 req = driver.find_element(By.XPATH, "//img[@class='n3VNCb KAlRDb']")
                 final = req.get_attribute("src")
@@ -101,7 +101,7 @@ if st.button("Get data"):
                 break
             else:
                 cnt += 1
-        if final == None:
+        if final == "":
             final = "Couldnt able to fetch this item, sorry."
         add_to_file([item, final])
         st.write(final)
